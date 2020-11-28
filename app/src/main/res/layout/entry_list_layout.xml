@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    card_view:cardElevation="2dp"
+    card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/holo_green_light"
+        android:padding="12dp">
+
+        <RelativeLayout
+            android:layout_width="195dp"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/nameTxtView"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_below="@+id/nameTxtView"
+                android:id="@+id/tagTxtView"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_below="@id/tagTxtView"
+                    android:id="@+id/addressTxtView"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:textStyle="bold"/>
+
+            <!--
+                    <TextView
+                        android:layout_below="@id/addressTxtView"
+                        android:id="@+id/phoneTxtView"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_below="@id/phoneTxtView"
+                            android:id="@+id/descriptionTxtView"
+                            android:layout_width="220dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:textColor="@color/black"
+                            android:textSize="12dp"
+                            android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_below="@id/descriptionTxtView"
+                                android:id="@+id/ratingTxtView"
+                                android:layout_width="220dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:textColor="@color/black"
+                                android:textSize="12dp"
+                                android:textStyle="bold"/>
+                                -->
+        </RelativeLayout>
+
+            <Button
+                android:id="@+id/editEntry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="Edit" />
+
+            <Button
+                android:id="@+id/deleteEntry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Delete" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>

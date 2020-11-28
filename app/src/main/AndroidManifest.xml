@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonalRestaurantGuide">
-        <activity android:name=".EditRestaurantActivity"></activity>
+        <activity android:name=".RestaurantListActivity" />
+        <activity android:name=".EditRestaurantActivity" />
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/SplashTheme">
@@ -19,9 +20,9 @@
             </intent-filter>
         </activity>
         <activity
-        android:name=".RestaurantDetailsActivity"
-        android:label="Restaurant Details"
-        android:parentActivityName=".RestaurantsActivity" />
+            android:name=".RestaurantDetailsActivity"
+            android:label="Restaurant Details"
+            android:parentActivityName=".RestaurantsActivity" />
         <activity
             android:name=".AddRestaurantActivity"
             android:label="Add Restaurant"

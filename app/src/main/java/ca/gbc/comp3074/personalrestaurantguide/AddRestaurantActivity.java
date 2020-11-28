@@ -2,25 +2,18 @@ package ca.gbc.comp3074.personalrestaurantguide;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class AddRestaurantActivity extends AppCompatActivity {
 
@@ -41,7 +34,8 @@ public class AddRestaurantActivity extends AppCompatActivity {
     private CheckBox italianTag;
     private CheckBox canadianTag;
     private Button addButton;
-
+    private SqliteDatabase mDatabase;
+    //SqliteDatabase ourdb;
 
 
     @Override
@@ -49,30 +43,114 @@ public class AddRestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_restaurant);
 
-        nameLabel=(TextView)findViewById(R.id.nameLabel);
+        nameLabel = (TextView) findViewById(R.id.nameLabel);
         nameInput = (EditText) findViewById(R.id.nameInput);
-        addressLabel=(TextView)findViewById(R.id.addressLabel);
+        addressLabel = (TextView) findViewById(R.id.addressLabel);
         addressInput = (EditText) findViewById(R.id.addressInput);
-        phoneLabel=(TextView)findViewById(R.id.phoneLabel);
+        phoneLabel = (TextView) findViewById(R.id.phoneLabel);
         phoneInput = (EditText) findViewById(R.id.phoneInput);
-        descriptionLabel=(TextView)findViewById(R.id.descriptionLabel);
+        descriptionLabel = (TextView) findViewById(R.id.descriptionLabel);
         descriptionInput = (EditText) findViewById(R.id.descriptionInput);
-        ratingLabel=(TextView)findViewById(R.id.ratingLabel);
+        ratingLabel = (TextView) findViewById(R.id.ratingLabel);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        indianTag=(CheckBox)findViewById(R.id.indianTag);
-        chineseTag=(CheckBox)findViewById(R.id.chineseTag);
-        japaneseTag=(CheckBox)findViewById(R.id.japaneseTag);
-        greekTag=(CheckBox)findViewById(R.id.greekTag);
-        italianTag=(CheckBox)findViewById(R.id.italianTag);
-        canadianTag=(CheckBox)findViewById(R.id.canadianTag);
+        indianTag = (CheckBox) findViewById(R.id.indianTag);
+        chineseTag = (CheckBox) findViewById(R.id.chineseTag);
+        japaneseTag = (CheckBox) findViewById(R.id.japaneseTag);
+        greekTag = (CheckBox) findViewById(R.id.greekTag);
+        italianTag = (CheckBox) findViewById(R.id.italianTag);
+        canadianTag = (CheckBox) findViewById(R.id.canadianTag);
         addButton = (Button) findViewById(R.id.addButton);
+        mDatabase=new SqliteDatabase(this);
+        //ourdb = new SqliteDatabase(this);
+        insertdata();
+
 
         //back arrow button
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    public void insertdata() {
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name=nameInput.getText().toString();
+                String address=addressInput.getText().toString();
+                String phone=phoneInput.getText().toString();
+                String description=descriptionInput.getText().toString();
+                float numStars = ratingBar.getRating();
+                String rating = Float.toString(numStars);
+                String tags = "";
+                if (indianTag.isChecked()) {
+                    tags = tags + "," + indianTag.getText();
+                }
+                if (chineseTag.isChecked()) {
+                    tags = tags + "," + chineseTag.getText();
+                }
+                if (japaneseTag.isChecked()) {
+                    tags = tags + "," + japaneseTag.getText();
+                }
+                if (greekTag.isChecked()) {
+                    tags = tags + "," + greekTag.getText();
+                }
+                if (italianTag.isChecked()) {
+                    tags = tags + "," + italianTag.getText();
+                }
+                if (canadianTag.isChecked()) {
+                    tags = tags + "," + canadianTag.getText();
+                }
+
+                Entries newEntry=new Entries(name,address,phone,description,rating,tags);
+                mDatabase.addEntries(newEntry);
+
+                Intent intent=new Intent(AddRestaurantActivity.this,RestaurantsActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 
+
+
+        /*addButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String name=nameInput.getText().toString();
+                String address=addressInput.getText().toString();
+                String phone=phoneInput.getText().toString();
+                String description=descriptionInput.getText().toString();
+                //getting the number of stars and storing it as an integer
+                int numStars=ratingBar.getNumStars();
+                //converting the numStars from integer to string
+                String rating=Integer.toString(numStars);
+                //getting the tags that are selected and storing them
+                String tags="";
+                //checking which tags are clicked and storing them in tags variable
+                if(indianTag.isChecked()){
+                    tags=tags+","+indianTag.getText();
+                }
+                if(chineseTag.isChecked()){
+                    tags=tags+","+chineseTag.getText();
+                }
+                if(japaneseTag.isChecked()){
+                    tags=tags+","+japaneseTag.getText();
+                }
+                if(greekTag.isChecked()){
+                    tags=tags+","+greekTag.getText();
+                }
+                if(italianTag.isChecked()){
+                    tags=tags+","+italianTag.getText();
+                }
+                if(canadianTag.isChecked()){
+                    tags=tags+","+canadianTag.getText();
+                }
+            }*/
+
+        /*
+        )*/
+
+        /*
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -139,7 +217,12 @@ public class AddRestaurantActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+         */
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
