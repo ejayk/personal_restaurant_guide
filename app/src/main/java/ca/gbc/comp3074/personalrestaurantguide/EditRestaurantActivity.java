@@ -48,6 +48,9 @@ public class EditRestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_restaurant);
 
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         Intent i=getIntent();
         int id=i.getExtras().getInt("COLUMN_ID");
@@ -123,7 +126,7 @@ public class EditRestaurantActivity extends AppCompatActivity {
         submitEditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name="Name: "+editNameInput.getText().toString();
+                String name=editNameInput.getText().toString();
                 String address=editAddressInput.getText().toString();
                 String phone=editPhoneInput.getText().toString();
                 String description=editDescriptionInput.getText().toString();
