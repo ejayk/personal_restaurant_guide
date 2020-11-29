@@ -75,30 +75,30 @@ public class AddRestaurantActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name=nameInput.getText().toString();
+                String name="Name: "+nameInput.getText().toString();
                 String address=addressInput.getText().toString();
                 String phone=phoneInput.getText().toString();
                 String description=descriptionInput.getText().toString();
                 float numStars = ratingBar.getRating();
                 String rating = Float.toString(numStars);
-                String tags = "";
+                String tags = "Tags: ";
                 if (indianTag.isChecked()) {
-                    tags = tags + "," + indianTag.getText();
+                    tags = tags + "#" + indianTag.getText();
                 }
                 if (chineseTag.isChecked()) {
-                    tags = tags + "," + chineseTag.getText();
+                    tags = tags + "#" + chineseTag.getText();
                 }
                 if (japaneseTag.isChecked()) {
-                    tags = tags + "," + japaneseTag.getText();
+                    tags = tags + "#" + japaneseTag.getText();
                 }
                 if (greekTag.isChecked()) {
-                    tags = tags + "," + greekTag.getText();
+                    tags = tags + "#" + greekTag.getText();
                 }
                 if (italianTag.isChecked()) {
-                    tags = tags + "," + italianTag.getText();
+                    tags = tags + "#" + italianTag.getText();
                 }
                 if (canadianTag.isChecked()) {
-                    tags = tags + "," + canadianTag.getText();
+                    tags = tags + "#" + canadianTag.getText();
                 }
 
                 Entries newEntry=new Entries(name,address,phone,description,rating,tags);

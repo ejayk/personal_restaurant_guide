@@ -68,15 +68,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         ratingBarStatic.setRating(numStars);
         tagsTxt.setText(tags);
 
-
-
-
-
-
-
-
-
-
         //back arrow button
         if(getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -103,12 +94,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.about:
                 Intent intent = new Intent(this, AboutActivity.class);
-                this.startActivity(intent);
-                break;
-        }
-        switch (item.getItemId()) {
-            case R.id.restaurantDetails:
-                Intent intent = new Intent(this, RestaurantDetailsActivity.class);
                 this.startActivity(intent);
                 break;
         }

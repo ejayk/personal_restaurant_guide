@@ -123,30 +123,30 @@ public class EditRestaurantActivity extends AppCompatActivity {
         submitEditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name=editNameInput.getText().toString();
+                String name="Name: "+editNameInput.getText().toString();
                 String address=editAddressInput.getText().toString();
                 String phone=editPhoneInput.getText().toString();
                 String description=editDescriptionInput.getText().toString();
                 float numStars = editRatingBar.getRating();
                 String rating = Float.toString(numStars);
-                String tags = "";
+                String tags = "Tags: ";
                 if (editIndianTag.isChecked()) {
-                    tags = tags + "," + editIndianTag.getText();
+                    tags = tags + "#" + editIndianTag.getText();
                 }
                 if (editChineseTag.isChecked()) {
-                    tags = tags + "," + editChineseTag.getText();
+                    tags = tags + "#" + editChineseTag.getText();
                 }
                 if (editJapaneseTag.isChecked()) {
-                    tags = tags + "," + editJapaneseTag.getText();
+                    tags = tags + "#" + editJapaneseTag.getText();
                 }
                 if (editGreekTag.isChecked()) {
-                    tags = tags + "," + editGreekTag.getText();
+                    tags = tags + "#" + editGreekTag.getText();
                 }
                 if (editItalianTag.isChecked()) {
-                    tags = tags + "," + editItalianTag.getText();
+                    tags = tags + "#" + editItalianTag.getText();
                 }
                 if (editCanadianTag.isChecked()) {
-                    tags = tags + "," + editCanadianTag.getText();
+                    tags = tags + "#" + editCanadianTag.getText();
                 }
 
 

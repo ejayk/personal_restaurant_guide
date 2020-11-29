@@ -19,7 +19,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder implements View.OnC
         super(itemView);
         nameTxtView = (TextView) itemView.findViewById(R.id.nameTxtView);
         tagTxtView = (TextView) itemView.findViewById(R.id.tagTxtView);
-        addressTxtView = (TextView) itemView.findViewById(R.id.addressTxtView);
+       // addressTxtView = (TextView) itemView.findViewById(R.id.addressTxtView);
        // phoneTxtView = (TextView) itemView.findViewById(R.id.phoneTxtView);
        // descriptionTxtView = (TextView) itemView.findViewById(R.id.descriptionTxtView);
        // ratingTxtView = (TextView) itemView.findViewById(R.id.ratingTxtView);
