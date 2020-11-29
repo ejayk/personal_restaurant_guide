@@ -1,7 +1,6 @@
 package ca.gbc.comp3074.personalrestaurantguide;
 
 import android.content.Intent;
-import android.media.Rating;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,8 +18,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     private TextView nameTxt, addressTxt, phoneTxt, descriptionTxt, tagsTxt;
     private TextView nameLbl, addressLbl, phoneLbl, descriptionLbl, tagsLbl, ratingLbl;
     private RatingBar ratingBarStatic;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +69,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         if(getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
-
     }
 
     @Override

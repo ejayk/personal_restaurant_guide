@@ -39,27 +39,4 @@ public class EntryViewHolder extends RecyclerView.ViewHolder implements View.OnC
         this.itemClickListener=ic;
     }
 
-
-
-/*
-        nameTxtView= (TextView) itemView.findViewById(R.id.nameTxtView);
-
-        tagTxtView= (TextView) itemView.findViewById(R.id.tagTxtView);
-
-        editListBtn= (Button) itemView.findViewById(R.id.editEntry);
-        deleteBtn=(Button)itemView.findViewById(R.id.deleteEntry);
-
-        itemView.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        this.itemClickListener.onItemClick(v,getLayoutPosition());
-    }
-
-    public void setItemClickListener(ItemClickListener ic)
-    {
-        this.itemClickListener=ic;
-    }
-}*/
 }

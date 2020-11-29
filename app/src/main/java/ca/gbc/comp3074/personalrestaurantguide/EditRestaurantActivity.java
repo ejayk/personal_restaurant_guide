@@ -13,11 +13,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class EditRestaurantActivity extends AppCompatActivity {
 
@@ -47,10 +42,6 @@ public class EditRestaurantActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_restaurant);
-
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
 
         Intent i=getIntent();
         int id=i.getExtras().getInt("COLUMN_ID");
@@ -90,6 +81,10 @@ public class EditRestaurantActivity extends AppCompatActivity {
         editPhoneInput.setText(phone);
         editDescriptionInput.setText(description);
         editRatingBar.setRating(numStars);
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         //check which tags are present in the entry and check them
         if(tags.indexOf("chinese")>-1){
@@ -158,112 +153,10 @@ public class EditRestaurantActivity extends AppCompatActivity {
                 Intent intent=new Intent(EditRestaurantActivity.this,RestaurantsActivity.class);
                 startActivity(intent);
 
-                /*update(id,editNameInput.getText().toString(),editAddressInput.getText().toString(),editPhoneInput.getText()
-                        .toString(),editDescriptionInput.getText().toString(),rating,tags);*/
             }
         });
 
-
-
-
-
-        /*
-        editNameInput.setText(name);
-        editAddressInput.setText(address);
-        editPhoneInput.setText(phone);
-        editDescriptionInput.setText(description);
-        int numStars=Integer.parseInt(rating);
-        editRatingBar.setRating(numStars);
-
-
-
-        if(tags.indexOf("chinese")>-1){
-
-            editChineseTag.setChecked(true);
-
-        }
-        if(tags.indexOf("canadian")>-1){
-
-            editCanadianTag.setChecked(true);
-
-        }
-        if(tags.indexOf("indian")>-1){
-
-            editIndianTag.setChecked(true);
-
-        }
-        if(tags.indexOf("japanese")>-1){
-
-            editJapaneseTag.setChecked(true);
-
-        }
-        if(tags.indexOf("greek")>-1){
-
-            editGreekTag.setChecked(true);
-
-        }
-        if(tags.indexOf("italian")>-1){
-
-            editItalianTag.setChecked(true);
-
-        }
-*/
-        //string.index of the tags string
-        //check if string chinese exists in the tags, then set as checked
-
-        // RatingBar starRating= ((RatingBar) numStars);
-       // editRatingBar=starRating;
-/*
-        submitEditBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int numStars = editRatingBar.getNumStars();
-                String rating = Integer.toString(numStars);
-                String tags = "";
-                if (editIndianTag.isChecked()) {
-                    tags = tags + "," + editIndianTag.getText();
-                }
-                if (editChineseTag.isChecked()) {
-                    tags = tags + "," + editChineseTag.getText();
-                }
-                if (editJapaneseTag.isChecked()) {
-                    tags = tags + "," + editJapaneseTag.getText();
-                }
-                if (editGreekTag.isChecked()) {
-                    tags = tags + "," + editGreekTag.getText();
-                }
-                if (editItalianTag.isChecked()) {
-                    tags = tags + "," + editItalianTag.getText();
-                }
-                if (editCanadianTag.isChecked()) {
-                    tags = tags + "," + editCanadianTag.getText();
-                }
-                update(id,editNameInput.getText().toString(),editAddressInput.getText().toString(),editPhoneInput.getText()
-                .toString(),editDescriptionInput.getText().toString(),rating,tags);
-            }
-        });
-
-    }*/
-/*
-    private void update(int id,String newName,String newAddress,String newPhone,String newDescription, String rating, String tags){
-        DBAdapter db=new DBAdapter(this);
-        db.openDB();
-        long result=db.UPDATE(id,newName,newAddress,newPhone,newDescription,rating,tags);
-
-        if(result>0){
-            editNameInput.setText(newName);
-            editAddressInput.setText(newAddress);
-            editPhoneInput.setText(newPhone);
-            editDescriptionInput.setText(newDescription);
-
-            Intent i=new Intent(this,RestaurantsActivity.class);
-            startActivity(i);
-
-
-        }*/
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
