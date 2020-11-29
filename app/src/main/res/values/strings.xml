@@ -12,4 +12,5 @@
     <string name="facebook_application_button">facebook application button</string>
     <string name="twitter_application_button">twitter application button</string>
     <string name="mail_application_button">mail application button</string>
+    <string name="title_activity_location">Map</string>
 </resources>
