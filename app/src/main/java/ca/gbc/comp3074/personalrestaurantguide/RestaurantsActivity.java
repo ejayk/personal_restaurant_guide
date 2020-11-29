@@ -29,6 +29,7 @@ public class RestaurantsActivity extends AppCompatActivity {
     private ArrayList<Entries>allEntries;
     private EntryAdapter mAdapter;
     private TextView restaurantsTitle;
+    private Button addBtn;
     //private ListView restaurantsListView;
    // private TextView getRestaurantName;
     //private EditText editTxtId;
@@ -50,7 +51,7 @@ public class RestaurantsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FrameLayout fLayout = (FrameLayout) findViewById(R.id.frame_layout);
+        //LinearLayoutManager fLayout = (LinearLayoutManager) findViewById(R.id.frame_layout);
         RecyclerView entryView=(RecyclerView)findViewById(R.id.entryView);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         entryView.setLayoutManager(linearLayoutManager);
@@ -59,7 +60,7 @@ public class RestaurantsActivity extends AppCompatActivity {
         allEntries=new ArrayList<>();
         mDatabase=new SqliteDatabase(this);
         allEntries=mDatabase.listEntries();
-
+        addBtn = (Button) findViewById(R.id.main_add_btn);
         //System.out.println(allEntries);
 
 
@@ -72,7 +73,6 @@ public class RestaurantsActivity extends AppCompatActivity {
             entryView.setVisibility(View.GONE);
             Toast.makeText(this, "There is no contact in the database. Start adding now", Toast.LENGTH_LONG).show();
         }
-
 
         //Logger logger=Logger.getLogger(RestaurantsActivity.class.getName());
 
@@ -434,6 +434,11 @@ public class RestaurantsActivity extends AppCompatActivity {
             }
             return true;
         }
+
+    public void addItem(View view) {
+        Intent intent = new Intent(this, AddRestaurantActivity.class);
+        this.startActivity(intent);
+    }
 
     /*public void openEditRestaurantActivity(){
         Intent intent=new Intent(this,EditRestaurantActivity.class);
