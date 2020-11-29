@@ -425,12 +425,6 @@ public class RestaurantsActivity extends AppCompatActivity {
                     break;
             }
             switch (item.getItemId()) {
-                case R.id.restaurantDetails:
-                    Intent intent = new Intent(this, RestaurantDetailsActivity.class);
-                    this.startActivity(intent);
-                    break;
-            }
-            switch (item.getItemId()) {
                 case R.id.restaurants:
                     Intent intent = new Intent(this, RestaurantsActivity.class);
                     this.startActivity(intent);
