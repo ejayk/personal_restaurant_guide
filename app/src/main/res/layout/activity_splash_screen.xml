@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B2FE68">
+    android:background="@color/white">
 
     <ImageView
         android:layout_width="match_parent"
@@ -10,7 +10,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_centerInParent="true"
-        android:background="#B1FD67"
-        android:scaleType="centerCrop"
-        android:src="@drawable/splashimage" />
+        android:background="@color/white"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fork_knife" />
 </RelativeLayout>
