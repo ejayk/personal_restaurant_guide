@@ -75,7 +75,7 @@ public class AddRestaurantActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name="Name: "+nameInput.getText().toString();
+                String name=nameInput.getText().toString();
                 String address=addressInput.getText().toString();
                 String phone=phoneInput.getText().toString();
                 String description=descriptionInput.getText().toString();
