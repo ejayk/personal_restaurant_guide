@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
@@ -38,8 +39,23 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         mailBtn = (ImageButton) findViewById(R.id.mailBtn);
 
         locBtn = (Button) findViewById(R.id.locBtn);
+        locBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //this wil execute when location btn clicked
+                //HERE for location
+                //open google maps for given restaurant name. (USING INTENT)
+            }
+        });
         directionBtn = (Button) findViewById(R.id.directionBtn);
-
+        directionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //this is for directions
+                //get current location, name of the restaurant
+                //open google maps (using INTENT)
+            }
+        });
         nameLbl=(TextView)findViewById(R.id.nameLabel);
         addressLbl=(TextView)findViewById(R.id.addressLabel);
         phoneLbl=(TextView)findViewById(R.id.phoneLabel);
