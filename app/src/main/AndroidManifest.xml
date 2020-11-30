@@ -30,8 +30,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".Direction"
+            android:label="@string/title_activity_direction"></activity>
+        <activity
             android:name=".Location"
-            android:label="@string/title_activity_location"></activity>
+            android:label="@string/title_activity_location" />
         <activity android:name=".RestaurantListActivity" />
         <activity android:name=".EditRestaurantActivity" />
         <activity

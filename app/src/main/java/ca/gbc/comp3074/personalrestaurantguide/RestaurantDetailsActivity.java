@@ -3,6 +3,7 @@ package ca.gbc.comp3074.personalrestaurantguide;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.Rating;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -71,6 +72,15 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(RestaurantDetailsActivity.this,Location.class);
                 startActivity(i);
+            }
+        });
+        directionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1=new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?saddr=43.68248499277201, -79.40978971550605&daddr=43.74102349463455, -79.24110537374222"));
+                startActivity(intent1);
+
             }
         });
 

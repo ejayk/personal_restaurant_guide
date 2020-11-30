@@ -1,6 +1,7 @@
 package ca.gbc.comp3074.personalrestaurantguide;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -102,6 +103,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryViewHolder>implement
                     mDatabase.deleteEntry(entries.getId());
                     ((Activity)context).finish();
                     context.startActivity(((Activity)context).getIntent());
+
+
                 }
             });
         }

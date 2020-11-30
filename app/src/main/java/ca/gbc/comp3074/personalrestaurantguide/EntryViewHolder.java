@@ -2,11 +2,20 @@ package ca.gbc.comp3074.personalrestaurantguide;
 
 
 
+import android.os.Message;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDialogFragment;
+
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class EntryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -14,6 +23,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public TextView nameTxtView, tagTxtView,addressTxtView,phoneTxtView,descriptionTxtView,ratingTxtView;
     public Button editEntry, deleteEntry;
     ItemClickListener itemClickListener;
+
 
     public EntryViewHolder(View itemView) {
         super(itemView);
@@ -26,7 +36,6 @@ public class EntryViewHolder extends RecyclerView.ViewHolder implements View.OnC
         deleteEntry = (Button) itemView.findViewById(R.id.deleteEntry);
         editEntry = (Button) itemView.findViewById(R.id.editEntry);
         itemView.setOnClickListener(this);
-
     }
 
     @Override
