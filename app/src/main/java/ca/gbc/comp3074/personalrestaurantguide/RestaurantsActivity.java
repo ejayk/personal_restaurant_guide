@@ -5,12 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ public class RestaurantsActivity extends AppCompatActivity {
     private EntryAdapter mAdapter;
     private TextView restaurantsTitle;
     private Button addBtn;
+    private SearchView simpleSearchView;
+
 
 
     @Override
@@ -42,6 +46,9 @@ public class RestaurantsActivity extends AppCompatActivity {
         mDatabase = new SqliteDatabase(this);
         allEntries = mDatabase.listEntries();
         addBtn = (Button) findViewById(R.id.main_add_btn);
+        simpleSearchView=(SearchView)findViewById(R.id.simpleSearchView);
+        simpleSearchView.setBackgroundColor(Color.CYAN);
+
 
         if (allEntries.size() > 0) {
             entryView.setVisibility(View.VISIBLE);

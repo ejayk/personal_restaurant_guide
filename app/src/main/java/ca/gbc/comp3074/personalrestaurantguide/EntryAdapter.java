@@ -77,6 +77,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryViewHolder>implement
             });
 
             holder.deleteEntry.setOnClickListener(new View.OnClickListener(){
+
                 @Override
                 public void onClick(View view){
                     mDatabase.deleteEntry(entries.getId());
