@@ -1,11 +1,12 @@
 package ca.gbc.comp3074.personalrestaurantguide;
 
 import android.content.Intent;
-import android.media.Rating;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
@@ -19,8 +20,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     private TextView nameTxt, addressTxt, phoneTxt, descriptionTxt, tagsTxt;
     private TextView nameLbl, addressLbl, phoneLbl, descriptionLbl, tagsLbl, ratingLbl;
     private RatingBar ratingBarStatic;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +40,25 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         mailBtn = (ImageButton) findViewById(R.id.mailBtn);
 
         locBtn = (Button) findViewById(R.id.locBtn);
-        directionBtn = (Button) findViewById(R.id.directionBtn);
+        locBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String map = "http://maps.google.co.in/maps?q=" + address;
 
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse(map));
+                startActivity(intent);
+            }
+        });
+        directionBtn = (Button) findViewById(R.id.directionBtn);
+        directionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("google.navigation:q="+address+""));
+                startActivity(intent);
+            }
+        });
         nameLbl=(TextView)findViewById(R.id.nameLabel);
         addressLbl=(TextView)findViewById(R.id.addressLabel);
         phoneLbl=(TextView)findViewById(R.id.phoneLabel);
@@ -72,8 +88,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         if(getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
-
     }
 
     @Override
