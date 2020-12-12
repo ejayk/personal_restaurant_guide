@@ -1,14 +1,11 @@
 package ca.gbc.comp3074.personalrestaurantguide;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.media.Rating;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
@@ -42,14 +39,17 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         fbBtn = (ImageButton) findViewById(R.id.fbBtn);
         twBtn = (ImageButton) findViewById(R.id.twitterBtn);
         mailBtn = (ImageButton) findViewById(R.id.mailBtn);
+
         locBtn = (Button) findViewById(R.id.locBtn);
         directionBtn = (Button) findViewById(R.id.directionBtn);
+
         nameLbl=(TextView)findViewById(R.id.nameLabel);
         addressLbl=(TextView)findViewById(R.id.addressLabel);
         phoneLbl=(TextView)findViewById(R.id.phoneLabel);
         descriptionLbl=(TextView)findViewById(R.id.descriptionLabel);
         tagsLbl=(TextView)findViewById(R.id.tagsLabel);
         ratingLbl=(TextView) findViewById(R.id.ratingLabel);
+
         nameTxt=(TextView)findViewById(R.id.nameTxt);
         addressTxt=(TextView)findViewById(R.id.addressTxt);
         phoneTxt=(TextView)findViewById(R.id.phoneTxt);
@@ -67,23 +67,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         //converting rating from int to stars
         ratingBarStatic.setRating(numStars);
         tagsTxt.setText(tags);
-        locBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(RestaurantDetailsActivity.this,Location.class);
-                startActivity(i);
-            }
-        });
-        directionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent1=new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("http://maps.google.com/maps?saddr=43.68248499277201, -79.40978971550605&daddr=43.74102349463455, -79.24110537374222"));
-                startActivity(intent1);
-
-            }
-        });
-
 
         //back arrow button
         if(getSupportActionBar() != null){
