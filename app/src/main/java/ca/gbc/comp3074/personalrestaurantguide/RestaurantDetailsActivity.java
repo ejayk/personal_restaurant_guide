@@ -43,7 +43,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         locBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String map = "http://maps.google.co.in/maps?q=" + name;
+                String map = "http://maps.google.co.in/maps?q=" + address;
 
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                         Uri.parse(map));
