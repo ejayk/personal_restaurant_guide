@@ -48,6 +48,18 @@ public class RestaurantsActivity extends AppCompatActivity {
         addBtn = (Button) findViewById(R.id.main_add_btn);
         simpleSearchView=(SearchView)findViewById(R.id.simpleSearchView);
         simpleSearchView.setBackgroundColor(Color.CYAN);
+        simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
 
 
         if (allEntries.size() > 0) {

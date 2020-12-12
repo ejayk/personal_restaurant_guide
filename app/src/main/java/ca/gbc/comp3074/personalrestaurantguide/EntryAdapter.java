@@ -111,6 +111,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryViewHolder>implement
                 @Override
                 protected FilterResults performFiltering(CharSequence charSequence){
                     String charString=charSequence.toString();
+                    String searchText=charSequence.toString().toLowerCase();
+                    String [] split=searchText.split(",");
+
+
                     if(charString.isEmpty()){
                         listEntries=mArrayList;
                     }else{
