@@ -1,6 +1,7 @@
 package ca.gbc.comp3074.personalrestaurantguide;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,18 +43,20 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         locBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //this wil execute when location btn clicked
-                //HERE for location
-                //open google maps for given restaurant name. (USING INTENT)
+                String map = "http://maps.google.co.in/maps?q=" + name;
+
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse(map));
+                startActivity(intent);
             }
         });
         directionBtn = (Button) findViewById(R.id.directionBtn);
         directionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //this is for directions
-                //get current location, name of the restaurant
-                //open google maps (using INTENT)
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("google.navigation:q="+address+""));
+                startActivity(intent);
             }
         });
         nameLbl=(TextView)findViewById(R.id.nameLabel);
