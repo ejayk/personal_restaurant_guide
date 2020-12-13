@@ -3,6 +3,7 @@ package ca.gbc.comp3074.personalrestaurantguide;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,12 +78,22 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryViewHolder>implement
             });
 
             holder.deleteEntry.setOnClickListener(new View.OnClickListener(){
-
                 @Override
                 public void onClick(View view){
-                    mDatabase.deleteEntry(entries.getId());
-                    ((Activity)context).finish();
-                    context.startActivity(((Activity)context).getIntent());
+                   AlertDialog.Builder builder= new AlertDialog.Builder(context);
+                   builder.setMessage("Are you sure to delete the row?");
+                   builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                       @Override
+                       public void onClick(DialogInterface dialogInterface, int i) {
+                           mDatabase.deleteEntry(entries.getId());
+                           ((Activity)context).finish();
+                           context.startActivity(((Activity)context).getIntent());
+
+                       }
+                   });
+                   builder.setNegativeButton("cancel",null);
+                   AlertDialog alert=builder.create();
+                   alert.show();
 
 
                 }
