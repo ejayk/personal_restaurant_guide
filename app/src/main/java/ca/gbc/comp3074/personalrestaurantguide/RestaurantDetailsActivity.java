@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -69,16 +70,17 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        String shareTxt = "Check out this restaurant guys! It's called " + name + " at " + address + "!";
-        String map = "http://maps.google.co.in/maps?q=" + address;
+        String shareTxt = "Check out this restaurant! It's called " + name + " located at " + address + "!";
+        String map = "https://maps.google.co.in/maps?q=" + address;
 
         /*
-            SHARE BUTTONS MAIL/FB/TWITTER
+           ------------- SHARE BUTTONS MAIL/FB/TWITTER -------------
         */
 
         fbBtn.setOnClickListener(view -> {
-            String fbPost = "https://www.facebook.com/dialog/feed?app_id=404803923975097" +
-                    "&link=" +map+
+            String fAdd = address.replaceAll("\\s","+");
+            String fMap = "https://maps.google.co.in/maps?q="+fAdd;
+            String fbPost = "https://www.facebook.com/dialog/feed?app_id=404803923975097&link=" +fMap+
                     "&redirect_uri=https://www.facebook.com/";
             Uri uri = Uri.parse(fbPost);
             startActivity(new Intent(Intent.ACTION_VIEW, uri));
@@ -86,21 +88,25 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
         mailBtn.setOnClickListener(view -> {
             Intent mail = new Intent(Intent.ACTION_VIEW);
-            mail.setType("text/plain");
+            String mAdd = address.replaceAll("\\s","+");
+            String mMap = "https://maps.google.co.in/maps?q="+mAdd;
+            mail.setType("text/html");
             mail.setData(Uri.parse("mailto:"));
-            mail.putExtra(Intent.EXTRA_TEXT   , shareTxt + "\n" + map);
+            mail.putExtra(Intent.EXTRA_SUBJECT, "Check out this restaurant!");
+            mail.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<p>" + shareTxt + "</p><a>"+mMap+"</a>"));
             startActivity(mail);
         });
 
         twBtn.setOnClickListener(view -> {
-            String tweetUrl = "https://twitter.com/intent/tweet?text="
-                    + shareTxt + map;
+            String tAdd = address.replaceAll("\\s","%2B");
+            String tMap = "https://maps.google.co.in/maps?q="+tAdd;
+            String tweetUrl = "https://twitter.com/intent/tweet?url=" + tMap + "&text=" + shareTxt;
             Uri uri = Uri.parse(tweetUrl);
             startActivity(new Intent(Intent.ACTION_VIEW, uri));
         });
 
         /*
-            SHARE BUTTONS MAIL/FB/TWITTER
+           ------------- SHARE BUTTONS MAIL/FB/TWITTER -------------
         */
 
         locBtn.setOnClickListener(view -> {
