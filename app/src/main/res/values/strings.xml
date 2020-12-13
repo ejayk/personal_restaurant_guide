@@ -15,4 +15,5 @@
     <string name="mail_application_button">mail application button</string>
     <string name="title_activity_location">Map</string>
     <string name="title_activity_direction">Map</string>
+    <string name="facebook_app_id">404803923975097</string>
 </resources>

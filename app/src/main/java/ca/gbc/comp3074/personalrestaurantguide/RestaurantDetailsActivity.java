@@ -1,7 +1,8 @@
 package ca.gbc.comp3074.personalrestaurantguide;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.media.Rating;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,90 +21,123 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     private TextView nameLbl, addressLbl, phoneLbl, descriptionLbl, tagsLbl, ratingLbl;
     private RatingBar ratingBarStatic;
 
-
-
+    @SuppressLint("IntentReset")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_restaurant);
 
+        Intent i = getIntent();
+        String name = i.getExtras().getString("COLUMN_NAME");
+        String address = i.getExtras().getString("COLUMN_ADDRESS");
+        String phone = i.getExtras().getString("COLUMN_PHONE");
+        String description = i.getExtras().getString("COLUMN_DESCRIPTION");
+        String ratingBar = i.getExtras().getString("COLUMN_RATING");
+        String tags = i.getExtras().getString("COLUMN_TAGS");
 
-        Intent i=getIntent();
-        String name=i.getExtras().getString("COLUMN_NAME");
-        String address=i.getExtras().getString("COLUMN_ADDRESS");
-        String phone=i.getExtras().getString("COLUMN_PHONE");
-        String description=i.getExtras().getString("COLUMN_DESCRIPTION");
-        String ratingBar=i.getExtras().getString("COLUMN_RATING");
-        String tags=i.getExtras().getString("COLUMN_TAGS");
+        nameLbl = findViewById(R.id.nameLabel);
+        addressLbl = findViewById(R.id.addressLabel);
+        phoneLbl = findViewById(R.id.phoneLabel);
+        descriptionLbl = findViewById(R.id.descriptionLabel);
+        tagsLbl = findViewById(R.id.tagsLabel);
+        ratingLbl = findViewById(R.id.ratingLabel);
 
-        fbBtn = (ImageButton) findViewById(R.id.fbBtn);
-        twBtn = (ImageButton) findViewById(R.id.twitterBtn);
-        mailBtn = (ImageButton) findViewById(R.id.mailBtn);
+        nameTxt = findViewById(R.id.nameTxt);
+        addressTxt = findViewById(R.id.addressTxt);
+        phoneTxt = findViewById(R.id.phoneTxt);
+        descriptionTxt = findViewById(R.id.descriptionTxt);
+        tagsTxt = findViewById(R.id.tagsTxt);
+        ratingBarStatic = findViewById(R.id.ratingBarStatic);
 
-        locBtn = (Button) findViewById(R.id.locBtn);
-        directionBtn = (Button) findViewById(R.id.directionBtn);
-
-        nameLbl=(TextView)findViewById(R.id.nameLabel);
-        addressLbl=(TextView)findViewById(R.id.addressLabel);
-        phoneLbl=(TextView)findViewById(R.id.phoneLabel);
-        descriptionLbl=(TextView)findViewById(R.id.descriptionLabel);
-        tagsLbl=(TextView)findViewById(R.id.tagsLabel);
-        ratingLbl=(TextView) findViewById(R.id.ratingLabel);
-
-        nameTxt=(TextView)findViewById(R.id.nameTxt);
-        addressTxt=(TextView)findViewById(R.id.addressTxt);
-        phoneTxt=(TextView)findViewById(R.id.phoneTxt);
-        descriptionTxt=(TextView)findViewById(R.id.descriptionTxt);
-        tagsTxt=(TextView)findViewById(R.id.tagsTxt);
-        ratingBarStatic=(RatingBar)findViewById(R.id.ratingBarStatic);
-
-        //converting rating from string to int
-        float numStars=Float.parseFloat(ratingBar);
+        float numStars = Float.parseFloat(ratingBar); //converting rating from string to int
 
         nameTxt.setText(name);
         addressTxt.setText(address);
         phoneTxt.setText(phone);
         descriptionTxt.setText(description);
-        //converting rating from int to stars
-        ratingBarStatic.setRating(numStars);
+        ratingBarStatic.setRating(numStars); //converting rating from int to stars
         tagsTxt.setText(tags);
 
+        fbBtn = findViewById(R.id.fbBtn);
+        twBtn = findViewById(R.id.twitterBtn);
+        mailBtn = findViewById(R.id.mailBtn);
+        locBtn = findViewById(R.id.locBtn);
+        directionBtn = findViewById(R.id.directionBtn);
+
         //back arrow button
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        String shareTxt = "Check out this restaurant guys! It's called " + name + " at " + address + "!";
+        String map = "http://maps.google.co.in/maps?q=" + address;
 
+        /*
+            SHARE BUTTONS MAIL/FB/TWITTER
+        */
+
+        fbBtn.setOnClickListener(view -> {
+            String fbPost = "https://www.facebook.com/dialog/feed?app_id=404803923975097" +
+                    "&link=" +map+
+                    "&redirect_uri=https://www.facebook.com/";
+            Uri uri = Uri.parse(fbPost);
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
+        });
+
+        mailBtn.setOnClickListener(view -> {
+            Intent mail = new Intent(Intent.ACTION_VIEW);
+            mail.setType("text/plain");
+            mail.setData(Uri.parse("mailto:"));
+            mail.putExtra(Intent.EXTRA_TEXT   , shareTxt + "\n" + map);
+            startActivity(mail);
+        });
+
+        twBtn.setOnClickListener(view -> {
+            String tweetUrl = "https://twitter.com/intent/tweet?text="
+                    + shareTxt + map;
+            Uri uri = Uri.parse(tweetUrl);
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
+        });
+
+        /*
+            SHARE BUTTONS MAIL/FB/TWITTER
+        */
+
+        locBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(map));
+            startActivity(intent);
+        });
+
+        directionBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("google.navigation:q=" + address + ""));
+            startActivity(intent);
+        });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.addRestaurant:
-                Intent intent = new Intent(this, AddRestaurantActivity.class);
-                this.startActivity(intent);
-                break;
+        if (item.getItemId() == R.id.addRestaurant) {
+            Intent intent = new Intent(this, AddRestaurantActivity.class);
+            this.startActivity(intent);
         }
-        switch (item.getItemId()) {
-            case R.id.about:
-                Intent intent = new Intent(this, AboutActivity.class);
-                this.startActivity(intent);
-                break;
+        if (item.getItemId() == R.id.about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            this.startActivity(intent);
         }
-        switch (item.getItemId()) {
-            case R.id.restaurants:
-                Intent intent = new Intent(this, RestaurantsActivity.class);
-                this.startActivity(intent);
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.restaurants) {
+            Intent intent = new Intent(this, RestaurantsActivity.class);
+            this.startActivity(intent);
+        } else {
+            return super.onOptionsItemSelected(item);
         }
         return true;
     }

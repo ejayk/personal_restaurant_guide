@@ -43,10 +43,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryViewHolder>implement
 
             holder.nameTxtView.setText(entries.getName());
             holder.tagTxtView.setText(entries.getTags());
-            //holder.addressTxtView.setText(entries.getAddress());
-            //holder.phoneTxtView.setText(entries.getPhone());
-           // holder.descriptionTxtView.setText(entries.getDescription());
-           // holder.ratingTxtView.setText(entries.getRating());
 
             holder.setItemClickListener(new ItemClickListener() {
                 @Override
