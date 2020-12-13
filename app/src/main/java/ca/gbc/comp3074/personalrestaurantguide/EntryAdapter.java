@@ -1,7 +1,6 @@
 package ca.gbc.comp3074.personalrestaurantguide;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -30,6 +30,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryViewHolder>implement
             mDatabase=new SqliteDatabase(context);
         }
 
+        @NonNull
         @Override
         public EntryViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
             View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.entry_list_layout,parent,false);
@@ -42,54 +43,36 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryViewHolder>implement
 
             holder.nameTxtView.setText(entries.getName());
             holder.tagTxtView.setText(entries.getTags());
-            //holder.addressTxtView.setText(entries.getAddress());
-            //holder.phoneTxtView.setText(entries.getPhone());
-           // holder.descriptionTxtView.setText(entries.getDescription());
-           // holder.ratingTxtView.setText(entries.getRating());
 
-            holder.setItemClickListener(new ItemClickListener() {
-                @Override
-                public void onItemClick(View v, int pos) {
+            holder.setItemClickListener((v, pos) -> {
 
-                    Intent intent=new Intent(context,RestaurantDetailsActivity.class);
+                Intent intent=new Intent(context,RestaurantDetailsActivity.class);
 
-                    intent.putExtra("COLUMN_ID",listEntries.get(pos).getId());
-                    intent.putExtra("COLUMN_NAME",listEntries.get(pos).getName());
-                    intent.putExtra("COLUMN_ADDRESS",listEntries.get(pos).getAddress());
-                    intent.putExtra("COLUMN_PHONE",listEntries.get(pos).getPhone());
-                    intent.putExtra("COLUMN_DESCRIPTION",listEntries.get(pos).getDescription());
-                    intent.putExtra("COLUMN_RATING",listEntries.get(pos).getRating());
-                    intent.putExtra("COLUMN_TAGS",listEntries.get(pos).getTags());
+                intent.putExtra("COLUMN_ID",listEntries.get(pos).getId());
+                intent.putExtra("COLUMN_NAME",listEntries.get(pos).getName());
+                intent.putExtra("COLUMN_ADDRESS",listEntries.get(pos).getAddress());
+                intent.putExtra("COLUMN_PHONE",listEntries.get(pos).getPhone());
+                intent.putExtra("COLUMN_DESCRIPTION",listEntries.get(pos).getDescription());
+                intent.putExtra("COLUMN_RATING",listEntries.get(pos).getRating());
+                intent.putExtra("COLUMN_TAGS",listEntries.get(pos).getTags());
 
-                    context.startActivity(intent);
+                context.startActivity(intent);
 
 
-                }
             });
 
-            holder.editEntry.setOnClickListener(new View.OnClickListener(){
-               @Override
-                public void onClick(View v){
+            holder.editEntry.setOnClickListener(v -> sendData(position));
 
-                  sendData(v, position);
-
-                }
-            });
-
-            holder.deleteEntry.setOnClickListener(new View.OnClickListener(){
-
-                @Override
-                public void onClick(View view){
-                    mDatabase.deleteEntry(entries.getId());
-                    ((Activity)context).finish();
-                    context.startActivity(((Activity)context).getIntent());
+            holder.deleteEntry.setOnClickListener(view -> {
+                mDatabase.deleteEntry(entries.getId());
+                ((Activity)context).finish();
+                context.startActivity(((Activity)context).getIntent());
 
 
-                }
             });
         }
 
-        private void sendData(View v, int pos){
+        private void sendData(int pos){
 
             Intent intent=new Intent(context,EditRestaurantActivity.class);
             intent.putExtra("COLUMN_ID",listEntries.get(pos).getId());
