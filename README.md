@@ -1,4 +1,6 @@
-# personal_restaurant_guide
+# Personal Restaurant Guide - Final Project
 
-Starting the project from where we left off before Beatriz left the group.
-Esther, Vivek, Afsana
+A list app for saving restaurants (with reviews, ratings, addresses, etc), with sharing functionalities (twitter, facebook, messages). The app allows you to get a location for the address saved, as well as directions. Overall, a simplified personal Yelp made for a final project, with Android Studio.
+
+
+Team Members: Esther, Vivek, Afsana
